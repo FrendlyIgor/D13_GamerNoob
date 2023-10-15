@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<h2>
+ Войти в систему
+</h2>
+
+<form method="post" action="{% url 'sign:login' %}" class="py-3">
+
+{% csrf_token %}
+
+    <table>
+    <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+    </tr>
+    </table>
+
+<button class="btn btn-warning" type="submit"> Вход </button>
+   
+</form>
+<h2>Если у вас ещё нет аккаунта, нажмите на кнопку
+<a class="btn btn-danger" href="/sign/signup/">Регистрация</a>
+</h2>
+{% endblock content %}
