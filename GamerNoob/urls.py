@@ -23,4 +23,5 @@ urlpatterns = [
     path('posts/', include('AD.urls')),
     path('sign/', include('sign.urls')),
     path('', include('protect.urls')),
+    path('accounts/', include('allauth.urls')),
 ]

@@ -14,14 +14,14 @@ class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'sign/signup.html'
     success_url = '/'
-
-    """ def form_valid(self, form):
+#При регистрации добавляется в группу basic
+    def form_valid(self, form):
         user = form.save()
-        group = Group.objects.get_or_create(name='common')[0]
+        group = Group.objects.get_or_create(name='basic')[0]
         user.groups.add(group)
         user.save()
         return super().form_valid(form)
- """
+    
 class LoginView(FormView):
     model = User
     form_class = LoginForm

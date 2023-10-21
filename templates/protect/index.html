@@ -10,5 +10,17 @@
  <div>
 
  <a class="btn btn-danger" href="sign/logout/">Выйти</a>
+ <a class="btn btn-warning"href="{% url 'AD:AD_add' %}">
+  Добавить       
+  </a>
+<hr>
+{% if is_not_premium %}
+  <a class="btn btn-outline-success" href="{% url 'upgrade' %}">Премиум</a>
+
+ {% else %}
+ <h3>
+  Вы в группе "Premium"
+ </h3>
+  {% endif %}
 
 {% endblock content %}

@@ -42,15 +42,10 @@ class AD(models.Model):
     category = models.ManyToManyField(Category, through = "ADCategory")
     title = models.CharField(max_length=128)
     text = models.TextField()
+    likes = models.ManyToManyField(User, blank=True, related_name='likes')
+    dislikes = models.ManyToManyField(User, blank=True, related_name='dislikes')
 
-    """ def like(self):
-        self.rating += 1
-        self.save()
-
-    def dislike(self):
-        self.rating -= 1
-        self.save()
- """
+    
     def preview(self):
         return self.text[0:124] + '...'
     
@@ -65,15 +60,13 @@ class ADCategory(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE)
 
 #Отклик
-class Responce(models.Model):
-    responceAD = models.ForeignKey(AD, on_delete=models.CASCADE)
-    responceUser = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
+class Comment(models.Model):
+    commentAD = models.ForeignKey(AD, on_delete=models.CASCADE, verbose_name="статья", blank=True, null=True, related_name="comments_AD")
+    commentUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField(verbose_name='')
     dateCreation = models.DateTimeField(auto_now_add=True)
-    
 
     def __str__(self):
-        return self.responceAD.author.authorUser.username
+        return self.commentAD.author.authorUser.username
 
 
-# Create your models here.
